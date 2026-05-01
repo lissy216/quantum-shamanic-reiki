@@ -84,9 +84,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("[QSR contact] SMTP send error:", err);
+    const detail = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+    console.error("[QSR contact] SMTP send error:", detail);
     return NextResponse.json(
-      { error: "Mail service is temporarily unavailable." },
+      {
+        error: "Mail service is temporarily unavailable.",
+        debug: detail,
+      },
       { status: 502 }
     );
   }
