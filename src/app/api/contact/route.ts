@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+
+export const runtime = "nodejs";
 
 type Body = {
   name?: string;
@@ -31,12 +34,15 @@ export async function POST(request: Request) {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const host = process.env.SMTP_HOST;
+  const port = Number(process.env.SMTP_PORT ?? "465");
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
   const to = process.env.INQUIRY_EMAIL_TO ?? "hello@quantumshamanicreiki.com";
   const from = process.env.INQUIRY_EMAIL_FROM ?? "QSR <hello@quantumshamanicreiki.com>";
 
-  if (!apiKey) {
-    console.log("[QSR contact] Resend not configured. Inquiry received:", {
+  if (!host || !user || !pass) {
+    console.log("[QSR contact] SMTP not configured. Inquiry received:", {
       name,
       email,
       subject: body.subject,
@@ -46,6 +52,13 @@ export async function POST(request: Request) {
   }
 
   try {
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    });
+
     const subject = body.subject
       ? `[QSR] ${body.subject} — ${name}`
       : `[QSR] New inquiry — ${name}`;
@@ -58,25 +71,24 @@ export async function POST(request: Request) {
       <pre style="font-family: Georgia, serif; white-space: pre-wrap;">${escapeHtml(message)}</pre>
     `;
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({ from, to, subject, html, reply_to: email }),
-    });
+    const text = `New QSR inquiry\n\nFrom: ${name} <${email}>\nSubject: ${body.subject ?? "(none)"}\n\n${message}`;
 
-    if (!res.ok) {
-      const text = await res.text();
-      console.error("[QSR contact] Resend error:", res.status, text);
-      return NextResponse.json({ error: "Mail service is temporarily unavailable." }, { status: 502 });
-    }
+    await transporter.sendMail({
+      from,
+      to,
+      subject,
+      html,
+      text,
+      replyTo: email,
+    });
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("[QSR contact] Unexpected error:", err);
-    return NextResponse.json({ error: "Unexpected error sending your note." }, { status: 500 });
+    console.error("[QSR contact] SMTP send error:", err);
+    return NextResponse.json(
+      { error: "Mail service is temporarily unavailable." },
+      { status: 502 }
+    );
   }
 }
 
