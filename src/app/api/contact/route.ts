@@ -1,8 +1,23 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { promises as dns } from "node:dns";
 
 export const runtime = "nodejs";
+
+// Vercel's Node runtime returns EBUSY/EBADNAME for getaddrinfo on some
+// hostnames. Use Cloudflare DNS-over-HTTPS (regular fetch) to resolve
+// the SMTP host's IPv4 address, then connect to the IP directly while
+// keeping tls.servername set to the real hostname for SNI/cert validation.
+async function resolveIPv4(host: string): Promise<string> {
+  const res = await fetch(
+    `https://1.1.1.1/dns-query?name=${encodeURIComponent(host)}&type=A`,
+    { headers: { Accept: "application/dns-json" } }
+  );
+  if (!res.ok) throw new Error(`DoH lookup failed: ${res.status}`);
+  const data = (await res.json()) as { Answer?: Array<{ data: string; type: number }> };
+  const a = data.Answer?.find((r) => r.type === 1)?.data;
+  if (!a) throw new Error(`No A record found for ${host}`);
+  return a;
+}
 
 type Body = {
   name?: string;
@@ -53,11 +68,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    // Vercel's Node runtime returns EBUSY on getaddrinfo for some hostnames.
-    // Resolve to an IPv4 address ourselves with dns.resolve4, then pass the
-    // IP directly to nodemailer — keep `tls.servername` so SNI/cert validation
-    // still uses the real hostname.
-    const ipv4 = (await dns.resolve4(host))[0];
+    const ipv4 = await resolveIPv4(host);
 
     const transporter = nodemailer.createTransport({
       host: ipv4,
