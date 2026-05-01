@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import dns from "node:dns";
 
 export const runtime = "nodejs";
+
+// Vercel's Node runtime sometimes returns EBUSY for getaddrinfo on the
+// default IPv6-first lookup order. Forcing IPv4 first resolves it.
+dns.setDefaultResultOrder("ipv4first");
 
 type Body = {
   name?: string;
@@ -57,6 +62,10 @@ export async function POST(request: Request) {
       port,
       secure: port === 465,
       auth: { user, pass },
+      tls: { servername: host },
+      // Belt-and-braces IPv4 lookup for the SMTP socket itself
+      // (separate from the global setDefaultResultOrder).
+      family: 4,
     });
 
     const subject = body.subject
