@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
 
@@ -34,19 +33,12 @@ export async function POST(request: Request) {
     );
   }
 
-  const host = process.env.SMTP_HOST;
-  const port = Number(process.env.SMTP_PORT ?? "465");
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  // Vercel's Node DNS lookup fails for some hostnames. If SMTP_HOST is an IP,
-  // use SMTP_TLS_SERVERNAME for SNI/cert validation. Otherwise use SMTP_HOST
-  // for both.
-  const tlsServername = process.env.SMTP_TLS_SERVERNAME ?? host;
+  const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.INQUIRY_EMAIL_TO ?? "hello@quantumshamanicreiki.com";
-  const from = process.env.INQUIRY_EMAIL_FROM ?? "QSR <hello@quantumshamanicreiki.com>";
+  const from = process.env.INQUIRY_EMAIL_FROM ?? "QSR <hello@darkhorsehealinglodge.com>";
 
-  if (!host || !user || !pass) {
-    console.log("[QSR contact] SMTP not configured. Inquiry received:", {
+  if (!apiKey) {
+    console.log("[QSR contact] Resend not configured. Inquiry received:", {
       name,
       email,
       subject: body.subject,
@@ -56,14 +48,6 @@ export async function POST(request: Request) {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      host,
-      port,
-      secure: port === 465,
-      auth: { user, pass },
-      tls: { servername: tlsServername },
-    });
-
     const subject = body.subject
       ? `[QSR] ${body.subject} — ${name}`
       : `[QSR] New inquiry — ${name}`;
@@ -76,27 +60,31 @@ export async function POST(request: Request) {
       <pre style="font-family: Georgia, serif; white-space: pre-wrap;">${escapeHtml(message)}</pre>
     `;
 
-    const text = `New QSR inquiry\n\nFrom: ${name} <${email}>\nSubject: ${body.subject ?? "(none)"}\n\n${message}`;
-
-    await transporter.sendMail({
-      from,
-      to,
-      subject,
-      html,
-      text,
-      replyTo: email,
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({ from, to, subject, html, reply_to: email }),
     });
+
+    if (!res.ok) {
+      const text = await res.text();
+      console.error("[QSR contact] Resend error:", res.status, text);
+      return NextResponse.json(
+        { error: "Mail service is temporarily unavailable.", debug: text },
+        { status: 502 }
+      );
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
     const detail = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
-    console.error("[QSR contact] SMTP send error:", detail);
+    console.error("[QSR contact] Unexpected error:", detail);
     return NextResponse.json(
-      {
-        error: "Mail service is temporarily unavailable.",
-        debug: detail,
-      },
-      { status: 502 }
+      { error: "Unexpected error sending your note.", debug: detail },
+      { status: 500 }
     );
   }
 }
