@@ -73,17 +73,16 @@ export async function POST(request: Request) {
       const text = await res.text();
       console.error("[QSR contact] Resend error:", res.status, text);
       return NextResponse.json(
-        { error: "Mail service is temporarily unavailable.", debug: text },
+        { error: "Mail service is temporarily unavailable." },
         { status: 502 }
       );
     }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    const detail = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
-    console.error("[QSR contact] Unexpected error:", detail);
+    console.error("[QSR contact] Unexpected error:", err);
     return NextResponse.json(
-      { error: "Unexpected error sending your note.", debug: detail },
+      { error: "Unexpected error sending your note." },
       { status: 500 }
     );
   }
