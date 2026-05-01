@@ -1,12 +1,8 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import dns from "node:dns";
+import { promises as dns } from "node:dns";
 
 export const runtime = "nodejs";
-
-// Vercel's Node runtime sometimes returns EBUSY for getaddrinfo on the
-// default IPv6-first lookup order. Forcing IPv4 first resolves it.
-dns.setDefaultResultOrder("ipv4first");
 
 type Body = {
   name?: string;
@@ -57,8 +53,14 @@ export async function POST(request: Request) {
   }
 
   try {
+    // Vercel's Node runtime returns EBUSY on getaddrinfo for some hostnames.
+    // Resolve to an IPv4 address ourselves with dns.resolve4, then pass the
+    // IP directly to nodemailer — keep `tls.servername` so SNI/cert validation
+    // still uses the real hostname.
+    const ipv4 = (await dns.resolve4(host))[0];
+
     const transporter = nodemailer.createTransport({
-      host,
+      host: ipv4,
       port,
       secure: port === 465,
       auth: { user, pass },
