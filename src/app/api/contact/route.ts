@@ -8,15 +8,28 @@ export const runtime = "nodejs";
 // the SMTP host's IPv4 address, then connect to the IP directly while
 // keeping tls.servername set to the real hostname for SNI/cert validation.
 async function resolveIPv4(host: string): Promise<string> {
-  const res = await fetch(
-    `https://1.1.1.1/dns-query?name=${encodeURIComponent(host)}&type=A`,
-    { headers: { Accept: "application/dns-json" } }
-  );
-  if (!res.ok) throw new Error(`DoH lookup failed: ${res.status}`);
-  const data = (await res.json()) as { Answer?: Array<{ data: string; type: number }> };
-  const a = data.Answer?.find((r) => r.type === 1)?.data;
-  if (!a) throw new Error(`No A record found for ${host}`);
-  return a;
+  // Try Google DoH first, fall back to Cloudflare DoH.
+  const endpoints = [
+    `https://dns.google/resolve?name=${encodeURIComponent(host)}&type=A`,
+    `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(host)}&type=A`,
+  ];
+  let lastErr: unknown = null;
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url, { headers: { Accept: "application/dns-json" } });
+      if (!res.ok) {
+        lastErr = new Error(`DoH ${new URL(url).host} returned ${res.status}`);
+        continue;
+      }
+      const data = (await res.json()) as { Answer?: Array<{ data: string; type: number }> };
+      const a = data.Answer?.find((r) => r.type === 1)?.data;
+      if (a) return a;
+      lastErr = new Error(`DoH ${new URL(url).host} returned no A record for ${host}`);
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr instanceof Error ? lastErr : new Error("DoH lookup failed");
 }
 
 type Body = {
