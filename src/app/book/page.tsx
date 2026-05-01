@@ -1,5 +1,5 @@
 import Link from "next/link";
-import QsrSymbol from "@/components/QsrSymbol";
+import BrandSigil from "@/components/BrandSigil";
 
 export const metadata = {
   title: "Reiki Evolved",
@@ -48,7 +48,7 @@ export default function BookPage() {
                     Evolved
                   </p>
                 </div>
-                <QsrSymbol size={140} variant="gold" />
+                <BrandSigil size={180} priority />
                 <p className="font-display text-[0.7rem] tracking-[0.3em] uppercase text-[var(--color-gold)] text-center">
                   Quantum · Shamanic · Reiki
                 </p>

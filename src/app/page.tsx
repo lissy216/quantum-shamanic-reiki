@@ -1,5 +1,5 @@
 import Link from "next/link";
-import QsrSymbol from "@/components/QsrSymbol";
+import BrandSigil from "@/components/BrandSigil";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
       <section className="bg-ember sparkle-bg relative overflow-hidden">
         <div className="wrap section text-center relative z-10">
           <div className="flex justify-center mb-8">
-            <QsrSymbol size={140} variant="gold" />
+            <BrandSigil size={180} priority />
           </div>
 
           <p className="font-display text-xs md:text-sm tracking-[0.36em] uppercase text-[var(--color-gold)]">
@@ -182,7 +182,7 @@ export default function Home() {
       {/* CLOSING CTA */}
       <section className="bg-ember">
         <div className="wrap-tight section text-center">
-          <QsrSymbol size={88} variant="gold" className="mx-auto" />
+          <BrandSigil size={120} className="mx-auto" />
           <h2 className="font-display text-3xl md:text-5xl text-[var(--color-ivory)] mt-8">
             You have arrived at the right place,
             <br />

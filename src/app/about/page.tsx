@@ -1,5 +1,5 @@
 import Link from "next/link";
-import QsrSymbol from "@/components/QsrSymbol";
+import BrandSigil from "@/components/BrandSigil";
 
 export const metadata = {
   title: "About",
@@ -12,7 +12,7 @@ export default function AboutPage() {
     <>
       <section className="bg-ember sparkle-bg">
         <div className="wrap-tight section text-center">
-          <QsrSymbol size={88} variant="gold" className="mx-auto" />
+          <BrandSigil size={140} className="mx-auto" priority />
           <p className="font-display text-xs tracking-[0.36em] uppercase text-[var(--color-gold)] mt-6">
             About the Tradition
           </p>

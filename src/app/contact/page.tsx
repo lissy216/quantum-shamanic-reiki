@@ -1,4 +1,4 @@
-import QsrSymbol from "@/components/QsrSymbol";
+import BrandSigil from "@/components/BrandSigil";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata = {
@@ -12,7 +12,7 @@ export default function ContactPage() {
     <>
       <section className="bg-ember sparkle-bg">
         <div className="wrap-tight section text-center">
-          <QsrSymbol size={80} variant="gold" className="mx-auto" />
+          <BrandSigil size={120} className="mx-auto" priority />
           <p className="font-display text-xs tracking-[0.36em] uppercase text-[var(--color-gold)] mt-6">
             Reach Out
           </p>
