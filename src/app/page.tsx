@@ -37,9 +37,10 @@ export default function Home() {
             of energy healing.
           </p>
           <p className="font-serif text-base md:text-lg text-[var(--color-gold-light)] italic mt-5 max-w-2xl mx-auto leading-relaxed">
-            Sessions and trainings held in the Ottawa Valley, Ontario, and online
-            worldwide. Open to first-time clients, beginners, and practitioners
-            already trained in another Reiki tradition or related modality.
+            Trainings and sessions held online worldwide, with in-person retreats
+            and one-to-one sessions also offered in the Ottawa Valley, Ontario.
+            Open to first-time clients, beginners, and practitioners already
+            trained in another Reiki tradition or related modality.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center justify-center gap-4">

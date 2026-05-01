@@ -7,7 +7,7 @@ const SITE = "https://quantumshamanicreiki.com";
 const ORG_NAME = "Quantum Shamanic Reiki";
 const ORG_LOGO = `${SITE}/images/qsr-vercel-app-icon-1024-no-c9x.png`;
 const ORG_DESCRIPTION =
-  "Quantum Shamanic Reiki is a four-level Reiki certification path weaving the Usui Reiki lineage with earth-rooted shamanic teaching and the insights of quantum physics. Sessions and training in the Ottawa Valley and online.";
+  "Quantum Shamanic Reiki is a four-level Reiki certification path weaving the Usui Reiki lineage with earth-rooted shamanic teaching and the insights of quantum physics. Online training and distance sessions worldwide; in-person retreats in the Ottawa Valley.";
 
 function JsonLd({ data }: { data: object }) {
   return (
@@ -33,7 +33,7 @@ export function OrganizationJsonLd() {
         logo: ORG_LOGO,
         description: ORG_DESCRIPTION,
         slogan: "Grounded light. Sacred clarity.",
-        areaServed: ["Ottawa Valley", "Ontario", "Canada", "Worldwide"],
+        areaServed: ["Worldwide", "Canada", "Ontario", "Ottawa Valley"],
         knowsAbout: [
           "Reiki",
           "Usui Reiki",
@@ -50,7 +50,8 @@ export function OrganizationJsonLd() {
   );
 }
 
-/** Used on the home page. Local-business signal for "Reiki near me" / "Reiki Ottawa" search intent. */
+/** Used on the home page. Local-business signal for the in-person Ottawa Valley
+ *  offering, while keeping global Reach through areaServed. */
 export function LocalBusinessJsonLd() {
   return (
     <JsonLd
@@ -70,14 +71,16 @@ export function LocalBusinessJsonLd() {
           addressLocality: "Ottawa Valley",
         },
         areaServed: [
-          { "@type": "City", name: "Ottawa" },
-          { "@type": "AdministrativeArea", name: "Ontario" },
+          { "@type": "AdministrativeArea", name: "Worldwide" },
           { "@type": "Country", name: "Canada" },
+          { "@type": "AdministrativeArea", name: "Ontario" },
+          { "@type": "City", name: "Ottawa" },
         ],
         availableService: [
-          { "@type": "Service", name: "Reiki healing session (in person)" },
+          { "@type": "Service", name: "Online Reiki training and certification" },
           { "@type": "Service", name: "Distance Reiki session" },
-          { "@type": "Service", name: "Reiki Level 1 training and certification" },
+          { "@type": "Service", name: "In-person Reiki session (Ottawa Valley)" },
+          { "@type": "Service", name: "In-person Reiki retreat (Ottawa Valley)" },
         ],
       }}
     />
@@ -94,10 +97,10 @@ export function SessionsServiceJsonLd() {
         name: "Quantum Shamanic Reiki Healing Session",
         serviceType: "Reiki energy healing",
         provider: { "@id": `${SITE}/#organization` },
-        areaServed: ["Ottawa Valley", "Ontario", "Canada", "Worldwide"],
+        areaServed: ["Worldwide", "Canada", "Ontario", "Ottawa Valley"],
         url: `${SITE}/sessions`,
         description:
-          "A Reiki healing session — a gentle, non-invasive energy treatment that supports the body's own capacity to heal. Available in person in the Ottawa Valley or remotely worldwide. Open to first-time clients and ongoing practice.",
+          "A Reiki healing session — a gentle, non-invasive energy treatment that supports the body's own capacity to heal. Offered online and as distance sessions worldwide, with in-person sessions also available in the Ottawa Valley. Open to first-time clients and ongoing practice.",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Reiki session formats",
@@ -106,18 +109,9 @@ export function SessionsServiceJsonLd() {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "In-Person Reiki Session",
+                name: "Distance Reiki Session (Online)",
                 description:
-                  "Full Reiki treatment on the table. 60 minutes. Held in the Ottawa Valley.",
-              },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Distance Reiki Session",
-                description:
-                  "Remote Reiki using the Hon-Sha-Ze-Sho-Nen symbol. 60 minutes. Anywhere in the world.",
+                  "Remote Reiki delivered worldwide via the Hon-Sha-Ze-Sho-Nen symbol. 60 minutes. Anywhere with a quiet room and an internet connection.",
               },
             },
             {
@@ -126,7 +120,16 @@ export function SessionsServiceJsonLd() {
                 "@type": "Service",
                 name: "Extended Sacred Reiki Session",
                 description:
-                  "90-minute session with fire-rite opening, extended treatment, and closing dialogue. For thresholds, transitions, and integration work.",
+                  "90-minute session with fire-rite opening, extended treatment, and closing dialogue. Available online or in person. For thresholds, transitions, and integration work.",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "In-Person Reiki Session (Ottawa Valley)",
+                description:
+                  "Full Reiki treatment on the table. 60 minutes. Held in the Ottawa Valley, Ontario.",
               },
             },
           ],
@@ -163,6 +166,12 @@ export function TrainingCourseJsonLd() {
         hasCourseInstance: [
           {
             "@type": "CourseInstance",
+            name: "Online Cohort (four weekly sessions, worldwide)",
+            courseMode: "Online",
+            courseWorkload: "PT12H",
+          },
+          {
+            "@type": "CourseInstance",
             name: "Weekend Intensive (in person, Ottawa Valley)",
             courseMode: "Onsite",
             location: {
@@ -174,12 +183,6 @@ export function TrainingCourseJsonLd() {
               },
             },
             courseWorkload: "PT14H",
-          },
-          {
-            "@type": "CourseInstance",
-            name: "Online Cohort (four weekly sessions)",
-            courseMode: "Online",
-            courseWorkload: "PT12H",
           },
         ],
       }}

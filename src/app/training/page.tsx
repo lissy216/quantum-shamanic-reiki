@@ -3,14 +3,14 @@ import BrandSigil from "@/components/BrandSigil";
 import { TrainingCourseJsonLd, TrainingFaqJsonLd, BreadcrumbJsonLd } from "@/components/StructuredData";
 
 export const metadata = {
-  title: "Reiki Training & Certification — Level 1 Enrollment",
+  title: "Online Reiki Training & Certification — Level 1 Enrollment",
   description:
-    "Reiki Level 1 training and certification with Quantum Shamanic Reiki. Two formats: weekend intensive in the Ottawa Valley, or four-session online cohort for students worldwide. Open to complete beginners, to practitioners trained in other Reiki lineages, and to teachers from related modalities (breathwork, sound healing, somatic practice) who want to add Reiki to their work.",
+    "Online Reiki Level 1 training and certification, taught remotely worldwide via a four-session cohort — with an in-person weekend intensive option in the Ottawa Valley. Open to complete beginners, to practitioners trained in other Reiki lineages, and to teachers from related modalities (breathwork, sound healing, somatic practice) who want to add Reiki to their work.",
   alternates: { canonical: "/training" },
   openGraph: {
-    title: "Reiki Training & Certification — Level 1 Enrollment",
+    title: "Online Reiki Training & Certification — Level 1",
     description:
-      "Reiki Level 1 training in the Ottawa Valley and online. The fire is already in you. Open to beginners and to practitioners from other traditions.",
+      "Online Reiki Level 1 cohorts worldwide, plus an in-person weekend intensive in the Ottawa Valley. The fire is already in you.",
     url: "https://quantumshamanicreiki.com/training",
   },
 };
@@ -43,10 +43,11 @@ export default function TrainingPage() {
             grounded, and lived from the inside.
           </p>
           <p className="font-serif text-base md:text-lg text-[var(--color-gold-light)] italic mt-5 max-w-2xl mx-auto leading-relaxed">
-            Reiki Level 1 certification, in person in the Ottawa Valley or online
-            worldwide. Welcome to complete beginners, to practitioners trained in
-            other Reiki lineages, and to teachers from related modalities — breathwork,
-            sound healing, somatic practice — looking to weave Reiki into their work.
+            Reiki Level 1 certification, taught online worldwide as a four-session
+            cohort, with a weekend intensive option in the Ottawa Valley. Welcome
+            to complete beginners, to practitioners trained in other Reiki
+            lineages, and to teachers from related modalities — breathwork, sound
+            healing, somatic practice — looking to weave Reiki into their work.
           </p>
         </div>
       </section>
@@ -162,6 +163,20 @@ export default function TrainingPage() {
 const FORMATS = [
   {
     tag: "Format A",
+    title: "Online Cohort",
+    length: "Four weekly evening sessions · approximately 12 hours total",
+    body:
+      "Our primary format. We meet online over four sessions, with private practice in between. The attunement is given in real time across distance — using the same principles of entanglement that govern distance treatment itself. Open to students worldwide, in any time zone we can find a window for.",
+    included: [
+      "Digital Level I manual (printable)",
+      "Distance attunement with live ceremony",
+      "Recorded sessions for review",
+      "QSR Level 1 Certificate",
+      "Practice partner matching",
+    ],
+  },
+  {
+    tag: "Format B",
     title: "In-Person Weekend Intensive",
     length: "Two consecutive days · approximately 14 hours of instruction",
     body:
@@ -172,20 +187,6 @@ const FORMATS = [
       "Hands-on practice with feedback",
       "QSR Level 1 Certificate",
       "Continuing email support",
-    ],
-  },
-  {
-    tag: "Format B",
-    title: "Online Cohort",
-    length: "Four weekly evening sessions · approximately 12 hours total",
-    body:
-      "For practitioners outside the region. We meet online over four sessions, with private practice in between. The attunement is given in real time across distance — using the same principles of entanglement that govern distance treatment itself.",
-    included: [
-      "Digital Level I manual (printable)",
-      "Distance attunement with live ceremony",
-      "Recorded sessions for review",
-      "QSR Level 1 Certificate",
-      "Practice partner matching",
     ],
   },
 ];

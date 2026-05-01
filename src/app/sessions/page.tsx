@@ -3,14 +3,14 @@ import BrandSigil from "@/components/BrandSigil";
 import { SessionsServiceJsonLd, BreadcrumbJsonLd } from "@/components/StructuredData";
 
 export const metadata = {
-  title: "Reiki Sessions in the Ottawa Valley & Online",
+  title: "Online & Distance Reiki Sessions (Worldwide) + In-Person",
   description:
-    "Book a Reiki healing session — in person in the Ottawa Valley, Ontario, or remotely anywhere in the world. Quantum Shamanic Reiki sessions support stress, anxiety, sleep, grief, and the body's own capacity to heal. No belief required. First-time clients welcome.",
+    "Book a Reiki healing session — online and remotely from anywhere in the world, or in person in the Ottawa Valley, Ontario. Quantum Shamanic Reiki distance sessions support stress, anxiety, sleep, grief, and the body's own capacity to heal. No belief required. First-time clients welcome.",
   alternates: { canonical: "/sessions" },
   openGraph: {
-    title: "Reiki Sessions — Ottawa Valley & Online",
+    title: "Online & Distance Reiki Sessions — Worldwide",
     description:
-      "An unhurried hour with the field. In-person or remote Reiki sessions for first-time clients and ongoing practice.",
+      "An unhurried hour with the field. Distance Reiki sessions worldwide; in-person sessions in the Ottawa Valley.",
     url: "https://quantumshamanicreiki.com/sessions",
   },
 };
@@ -45,11 +45,11 @@ export default function SessionsPage() {
             What to expect
           </h2>
           <p className="font-serif text-lg mt-6 leading-relaxed">
-            Reiki sessions are offered in person in the Ottawa Valley, Ontario,
-            and remotely worldwide. Clients come for a wide range of reasons —
-            stress, anxiety, sleep difficulty, grief, recovery, or simply because
-            something in them is asking for stillness. First-time clients are
-            warmly welcomed.
+            Reiki sessions are offered online and as distance sessions worldwide,
+            with in-person sessions also held in the Ottawa Valley, Ontario.
+            Clients come for a wide range of reasons — stress, anxiety, sleep
+            difficulty, grief, recovery, or simply because something in them is
+            asking for stillness. First-time clients are warmly welcomed.
           </p>
           <p className="font-serif text-lg mt-5 leading-relaxed">
             You arrive. You are met where you are. You lie down fully clothed on a
@@ -157,26 +157,26 @@ export default function SessionsPage() {
 const OFFERINGS = [
   {
     length: "60 minutes",
-    title: "In-Person Session",
-    format: "Ottawa Valley",
+    title: "Distance Reiki Session",
+    format: "Online · anywhere in the world",
     body:
-      "A full Reiki treatment on the table. Quiet space, warm room, hand-positions through the seven chakras and the Aura. Most clients leave deeply rested and clearer than they came.",
-    price: "Investment shared upon booking",
-  },
-  {
-    length: "60 minutes",
-    title: "Remote Session",
-    format: "Anywhere in the world",
-    body:
-      "Distance Reiki uses the symbol Hon-Sha-Ze-Sho-Nen and the principle of entanglement: that what has ever interacted remains, in some sense, connected. You rest at home. The work arrives.",
+      "Distance Reiki uses the symbol Hon-Sha-Ze-Sho-Nen and the principle of entanglement: that what has ever interacted remains, in some sense, connected. You rest at home. The work arrives. Available worldwide, in any time zone we can hold space in.",
     price: "Investment shared upon booking",
   },
   {
     length: "90 minutes",
     title: "Extended Sacred Session",
-    format: "In-person or remote",
+    format: "Online or in person",
     body:
       "A longer arc. Includes a fire-rite opening, an extended Reiki treatment, and a closing dialogue. Held for those navigating thresholds — grief, transition, the work of integration.",
+    price: "Investment shared upon booking",
+  },
+  {
+    length: "60 minutes",
+    title: "In-Person Session",
+    format: "Ottawa Valley",
+    body:
+      "A full Reiki treatment on the table. Quiet space, warm room, hand-positions through the seven chakras and the Aura. Most clients leave deeply rested and clearer than they came.",
     price: "Investment shared upon booking",
   },
 ];
