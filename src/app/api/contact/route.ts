@@ -3,35 +3,6 @@ import nodemailer from "nodemailer";
 
 export const runtime = "nodejs";
 
-// Vercel's Node runtime returns EBUSY/EBADNAME for getaddrinfo on some
-// hostnames. Use Cloudflare DNS-over-HTTPS (regular fetch) to resolve
-// the SMTP host's IPv4 address, then connect to the IP directly while
-// keeping tls.servername set to the real hostname for SNI/cert validation.
-async function resolveIPv4(host: string): Promise<string> {
-  // Try Google DoH first, fall back to Cloudflare DoH.
-  const endpoints = [
-    `https://dns.google/resolve?name=${encodeURIComponent(host)}&type=A`,
-    `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(host)}&type=A`,
-  ];
-  let lastErr: unknown = null;
-  for (const url of endpoints) {
-    try {
-      const res = await fetch(url, { headers: { Accept: "application/dns-json" } });
-      if (!res.ok) {
-        lastErr = new Error(`DoH ${new URL(url).host} returned ${res.status}`);
-        continue;
-      }
-      const data = (await res.json()) as { Answer?: Array<{ data: string; type: number }> };
-      const a = data.Answer?.find((r) => r.type === 1)?.data;
-      if (a) return a;
-      lastErr = new Error(`DoH ${new URL(url).host} returned no A record for ${host}`);
-    } catch (e) {
-      lastErr = e;
-    }
-  }
-  throw lastErr instanceof Error ? lastErr : new Error("DoH lookup failed");
-}
-
 type Body = {
   name?: string;
   email?: string;
@@ -67,6 +38,10 @@ export async function POST(request: Request) {
   const port = Number(process.env.SMTP_PORT ?? "465");
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
+  // Vercel's Node DNS lookup fails for some hostnames. If SMTP_HOST is an IP,
+  // use SMTP_TLS_SERVERNAME for SNI/cert validation. Otherwise use SMTP_HOST
+  // for both.
+  const tlsServername = process.env.SMTP_TLS_SERVERNAME ?? host;
   const to = process.env.INQUIRY_EMAIL_TO ?? "hello@quantumshamanicreiki.com";
   const from = process.env.INQUIRY_EMAIL_FROM ?? "QSR <hello@quantumshamanicreiki.com>";
 
@@ -81,14 +56,12 @@ export async function POST(request: Request) {
   }
 
   try {
-    const ipv4 = await resolveIPv4(host);
-
     const transporter = nodemailer.createTransport({
-      host: ipv4,
+      host,
       port,
       secure: port === 465,
       auth: { user, pass },
-      tls: { servername: host },
+      tls: { servername: tlsServername },
     });
 
     const subject = body.subject
