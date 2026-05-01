@@ -63,9 +63,6 @@ export async function POST(request: Request) {
       secure: port === 465,
       auth: { user, pass },
       tls: { servername: host },
-      // Belt-and-braces IPv4 lookup for the SMTP socket itself
-      // (separate from the global setDefaultResultOrder).
-      family: 4,
     });
 
     const subject = body.subject
