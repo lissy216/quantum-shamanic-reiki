@@ -2,9 +2,16 @@ import Link from "next/link";
 import BrandSigil from "@/components/BrandSigil";
 
 export const metadata = {
-  title: "The Four Levels",
+  title: "The Four Levels of Reiki Certification",
   description:
-    "Quantum Shamanic Reiki unfolds across four levels of certification: Foundation, Practitioner, Master, and Teacher.",
+    "The QSR Reiki certification path has four levels: Foundation (Level 1), Practitioner (Level 2), Master (Level 3), and Teacher (Level 4). Curriculum, attunements, prerequisites, and what each level opens for both beginners and practitioners trained in other Reiki traditions.",
+  alternates: { canonical: "/levels" },
+  openGraph: {
+    title: "The Four Levels of Reiki Certification",
+    description:
+      "Foundation, Practitioner, Master, Teacher. Full curriculum and attunement details for each level of Quantum Shamanic Reiki.",
+    url: "https://quantumshamanicreiki.com/levels",
+  },
 };
 
 export default function LevelsPage() {

@@ -1,15 +1,25 @@
 import Link from "next/link";
 import Image from "next/image";
+import { BookJsonLd, BreadcrumbJsonLd } from "@/components/StructuredData";
 
 export const metadata = {
-  title: "Reiki Evolved",
+  title: "Reiki Evolved — The Book (Coming Soon)",
   description:
-    "Reiki Evolved is the forthcoming foundational text of Quantum Shamanic Reiki. Lineage, philosophy, and practice woven together.",
+    "Reiki Evolved is the forthcoming book on Quantum Shamanic Reiki — the full Usui Reiki lineage, the Five Principles as living practice, the chakra and Aura systems, the published clinical research, and the quantum frameworks that meet it. A modern path of healing, presence, and living tradition. Coming soon.",
+  alternates: { canonical: "/book" },
+  openGraph: {
+    title: "Reiki Evolved — The Book (Coming Soon)",
+    description:
+      "A modern path of healing, presence, and living tradition. The companion book to Quantum Shamanic Reiki, forthcoming.",
+    url: "https://quantumshamanicreiki.com/book",
+  },
 };
 
 export default function BookPage() {
   return (
     <>
+      <BookJsonLd />
+      <BreadcrumbJsonLd trail={[{ name: "Home", href: "/" }, { name: "Reiki Evolved", href: "/book" }]} />
       <section className="bg-ember sparkle-bg">
         <div className="wrap section">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] items-center">

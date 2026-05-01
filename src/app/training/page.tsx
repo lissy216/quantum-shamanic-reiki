@@ -1,15 +1,26 @@
 import Link from "next/link";
 import BrandSigil from "@/components/BrandSigil";
+import { TrainingCourseJsonLd, TrainingFaqJsonLd, BreadcrumbJsonLd } from "@/components/StructuredData";
 
 export const metadata = {
-  title: "Training & Enrollment",
+  title: "Reiki Training & Certification — Level 1 Enrollment",
   description:
-    "Quantum Shamanic Reiki Level 1 training and certification — formats, dates, and how to enroll.",
+    "Reiki Level 1 training and certification with Quantum Shamanic Reiki. Two formats: weekend intensive in the Ottawa Valley, or four-session online cohort for students worldwide. Open to complete beginners, to practitioners trained in other Reiki lineages, and to teachers from related modalities (breathwork, sound healing, somatic practice) who want to add Reiki to their work.",
+  alternates: { canonical: "/training" },
+  openGraph: {
+    title: "Reiki Training & Certification — Level 1 Enrollment",
+    description:
+      "Reiki Level 1 training in the Ottawa Valley and online. The fire is already in you. Open to beginners and to practitioners from other traditions.",
+    url: "https://quantumshamanicreiki.com/training",
+  },
 };
 
 export default function TrainingPage() {
   return (
     <>
+      <TrainingCourseJsonLd />
+      <TrainingFaqJsonLd />
+      <BreadcrumbJsonLd trail={[{ name: "Home", href: "/" }, { name: "Training", href: "/training" }]} />
       <section className="bg-ember sparkle-bg">
         <div className="wrap-tight section text-center">
           <BrandSigil size={140} className="mx-auto" priority />
@@ -30,6 +41,12 @@ export default function TrainingPage() {
             We are not giving you something new. We are walking with you toward what
             is already true. The training is fundamentally experiential — practical,
             grounded, and lived from the inside.
+          </p>
+          <p className="font-serif text-base md:text-lg text-[var(--color-gold-light)] italic mt-5 max-w-2xl mx-auto leading-relaxed">
+            Reiki Level 1 certification, in person in the Ottawa Valley or online
+            worldwide. Welcome to complete beginners, to practitioners trained in
+            other Reiki lineages, and to teachers from related modalities — breathwork,
+            sound healing, somatic practice — looking to weave Reiki into their work.
           </p>
         </div>
       </section>

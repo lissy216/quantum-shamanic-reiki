@@ -1,9 +1,12 @@
 import Link from "next/link";
 import BrandSigil from "@/components/BrandSigil";
+import { OrganizationJsonLd, LocalBusinessJsonLd } from "@/components/StructuredData";
 
 export default function Home() {
   return (
     <>
+      <OrganizationJsonLd />
+      <LocalBusinessJsonLd />
       {/* HERO */}
       <section className="bg-ember sparkle-bg relative overflow-hidden">
         <div className="wrap section text-center relative z-10">
@@ -28,9 +31,15 @@ export default function Home() {
           </div>
 
           <p className="font-serif text-xl md:text-2xl text-[var(--color-ivory-warm)] mt-10 max-w-2xl mx-auto leading-relaxed">
-            Quantum Shamanic Reiki is a four-level certification path that honours
-            the lineage of Mikao Usui, integrates earth-rooted shamanic teaching,
-            and applies the insights of quantum physics to the practice of healing.
+            Quantum Shamanic Reiki is a four-level Reiki certification path that
+            honours the lineage of Mikao Usui, integrates earth-rooted shamanic
+            teaching, and applies the insights of quantum physics to the practice
+            of energy healing.
+          </p>
+          <p className="font-serif text-base md:text-lg text-[var(--color-gold-light)] italic mt-5 max-w-2xl mx-auto leading-relaxed">
+            Sessions and trainings held in the Ottawa Valley, Ontario, and online
+            worldwide. Open to first-time clients, beginners, and practitioners
+            already trained in another Reiki tradition or related modality.
           </p>
 
           <div className="mt-12 flex flex-wrap items-center justify-center gap-4">

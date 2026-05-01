@@ -2,9 +2,16 @@ import Link from "next/link";
 import BrandSigil from "@/components/BrandSigil";
 
 export const metadata = {
-  title: "About",
+  title: "About Reiki & the QSR Tradition",
   description:
-    "Quantum Shamanic Reiki honours the lineage of Mikao Usui, integrates earth-rooted shamanic teaching, and applies the insights of quantum physics to healing practice.",
+    "What Reiki is, how it works, and what makes Quantum Shamanic Reiki different. The full Usui Reiki lineage from Mikao Usui to today, plus the two distinctions of QSR: becoming Reiki rather than channeling it, and grounding the practice into the living Earth.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Reiki & the QSR Tradition",
+    description:
+      "What Reiki is, how it works, and the lineage from Mikao Usui to QSR. Two distinctions that change everything about the practice.",
+    url: "https://quantumshamanicreiki.com/about",
+  },
 };
 
 export default function AboutPage() {

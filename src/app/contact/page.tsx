@@ -2,9 +2,16 @@ import BrandSigil from "@/components/BrandSigil";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata = {
-  title: "Contact",
+  title: "Contact — Book a Session, Ask About Training",
   description:
-    "Reach out about a Quantum Shamanic Reiki session, training, or the Reiki Evolved book.",
+    "Get in touch about a Reiki session, Level 1 training enrollment, or the Reiki Evolved book. Sessions are offered in-person in the Ottawa Valley, Ontario, and remotely worldwide. We respond within two business days.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact — Quantum Shamanic Reiki",
+    description:
+      "Send a note. We'll be in touch. Sessions, training, and the Reiki Evolved book.",
+    url: "https://quantumshamanicreiki.com/contact",
+  },
 };
 
 export default function ContactPage() {

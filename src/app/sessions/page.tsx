@@ -1,15 +1,25 @@
 import Link from "next/link";
 import BrandSigil from "@/components/BrandSigil";
+import { SessionsServiceJsonLd, BreadcrumbJsonLd } from "@/components/StructuredData";
 
 export const metadata = {
-  title: "Healing Sessions",
+  title: "Reiki Sessions in the Ottawa Valley & Online",
   description:
-    "Receive a Quantum Shamanic Reiki session, in person in the Ottawa Valley or remotely anywhere in the world.",
+    "Book a Reiki healing session — in person in the Ottawa Valley, Ontario, or remotely anywhere in the world. Quantum Shamanic Reiki sessions support stress, anxiety, sleep, grief, and the body's own capacity to heal. No belief required. First-time clients welcome.",
+  alternates: { canonical: "/sessions" },
+  openGraph: {
+    title: "Reiki Sessions — Ottawa Valley & Online",
+    description:
+      "An unhurried hour with the field. In-person or remote Reiki sessions for first-time clients and ongoing practice.",
+    url: "https://quantumshamanicreiki.com/sessions",
+  },
 };
 
 export default function SessionsPage() {
   return (
     <>
+      <SessionsServiceJsonLd />
+      <BreadcrumbJsonLd trail={[{ name: "Home", href: "/" }, { name: "Sessions", href: "/sessions" }]} />
       <section className="bg-ember sparkle-bg">
         <div className="wrap-tight section text-center">
           <BrandSigil size={140} className="mx-auto" priority />
@@ -35,6 +45,13 @@ export default function SessionsPage() {
             What to expect
           </h2>
           <p className="font-serif text-lg mt-6 leading-relaxed">
+            Reiki sessions are offered in person in the Ottawa Valley, Ontario,
+            and remotely worldwide. Clients come for a wide range of reasons —
+            stress, anxiety, sleep difficulty, grief, recovery, or simply because
+            something in them is asking for stillness. First-time clients are
+            warmly welcomed.
+          </p>
+          <p className="font-serif text-lg mt-5 leading-relaxed">
             You arrive. You are met where you are. You lie down fully clothed on a
             massage table — or you settle into a comfortable chair if lying is not
             comfortable for your body — and the work begins.
