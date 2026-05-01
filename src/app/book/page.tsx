@@ -1,10 +1,10 @@
 import Link from "next/link";
-import BrandSigil from "@/components/BrandSigil";
+import Image from "next/image";
 
 export const metadata = {
   title: "Reiki Evolved",
   description:
-    "Reiki Evolved is the foundational text of Quantum Shamanic Reiki. Lineage, philosophy, and practice woven together.",
+    "Reiki Evolved is the forthcoming foundational text of Quantum Shamanic Reiki. Lineage, philosophy, and practice woven together.",
 };
 
 export default function BookPage() {
@@ -14,14 +14,17 @@ export default function BookPage() {
         <div className="wrap section">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] items-center">
             <div className="text-center lg:text-left">
-              <p className="font-display text-xs tracking-[0.36em] uppercase text-[var(--color-gold)]">
+              <span className="inline-block font-display text-[0.7rem] tracking-[0.3em] uppercase text-[var(--color-charcoal)] bg-[var(--color-gold)] px-3 py-1.5">
+                Coming Soon
+              </span>
+              <p className="font-display text-xs tracking-[0.36em] uppercase text-[var(--color-gold)] mt-6">
                 The Book
               </p>
-              <h1 className="font-display text-4xl md:text-6xl text-[var(--color-ivory)] mt-6">
+              <h1 className="font-display text-4xl md:text-6xl text-[var(--color-ivory)] mt-4">
                 Reiki Evolved
               </h1>
               <p className="font-serif italic text-xl md:text-2xl text-[var(--color-gold-light)] mt-4">
-                The companion text to Quantum Shamanic Reiki
+                A modern path of healing, presence, and living tradition.
               </p>
               <div className="gold-rule mt-8 lg:justify-start" aria-hidden style={{ justifyContent: "flex-start" }}>
                 <span className="star">✦ ✦ ✦</span>
@@ -31,30 +34,35 @@ export default function BookPage() {
                 history, science, and practice of QSR. Written for practitioners,
                 students, and anyone called to deepen.
               </p>
+              <p className="font-serif text-base text-[var(--color-gold-light)] italic mt-5">
+                Release date to be announced. Add your name to the list and we&apos;ll
+                send a single note when copies are available.
+              </p>
               <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
-                <Link href="/contact" className="btn-gold">Request a Copy</Link>
+                <Link href="/contact" className="btn-gold">Notify Me When Released</Link>
                 <Link href="/training" className="btn-outline">Begin Training</Link>
               </div>
             </div>
 
-            {/* Book mock — gold frame around symbol; replace later with cover image */}
             <div className="relative max-w-sm mx-auto">
-              <div className="aspect-[2/3] bg-charcoal-grain border border-[var(--color-gold-dark)] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] flex flex-col items-center justify-between p-10">
-                <div className="text-center">
-                  <p className="font-display text-[0.7rem] tracking-[0.3em] uppercase text-[var(--color-gold)]">
-                    Reiki
-                  </p>
-                  <p className="font-display text-2xl text-[var(--color-ivory)] mt-1 italic">
-                    Evolved
-                  </p>
+              <div className="relative shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]">
+                <Image
+                  src="/images/Reiki.Evolved.BookCover.png"
+                  alt="Reiki Evolved book cover — Tree of Life over a still mountain lake"
+                  width={800}
+                  height={1200}
+                  priority
+                  className="w-full h-auto block border border-[var(--color-gold-dark)]"
+                />
+                {/* Coming Soon corner ribbon */}
+                <div className="absolute top-4 -right-2 rotate-3">
+                  <div className="font-display text-[0.7rem] tracking-[0.32em] uppercase text-[var(--color-charcoal)] bg-[var(--color-gold)] px-4 py-2 shadow-lg border border-[var(--color-gold-dark)]">
+                    Coming Soon
+                  </div>
                 </div>
-                <BrandSigil size={180} priority />
-                <p className="font-display text-[0.7rem] tracking-[0.3em] uppercase text-[var(--color-gold)] text-center">
-                  Quantum · Shamanic · Reiki
-                </p>
               </div>
-              <p className="text-center text-xs text-[var(--color-smoke)] mt-4 italic font-serif">
-                Cover preview · final art coming soon
+              <p className="text-center text-xs text-[var(--color-smoke)] mt-5 italic font-serif">
+                Cover art revealed · publication date forthcoming
               </p>
             </div>
           </div>
@@ -133,7 +141,10 @@ export default function BookPage() {
 
       <section className="bg-ember">
         <div className="wrap-tight section text-center">
-          <h2 className="font-display text-3xl md:text-5xl text-[var(--color-ivory)]">
+          <span className="inline-block font-display text-[0.7rem] tracking-[0.3em] uppercase text-[var(--color-charcoal)] bg-[var(--color-gold)] px-3 py-1.5">
+            Coming Soon
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl text-[var(--color-ivory)] mt-6">
             Begin with the page.
             <br />
             <span className="italic font-serif font-light text-[var(--color-gold-light)]">
@@ -141,12 +152,13 @@ export default function BookPage() {
             </span>
           </h2>
           <p className="font-serif text-lg text-[var(--color-ivory-warm)] mt-8">
-            Request a copy and we&apos;ll send ordering details, format options, and
-            information on the companion training.
+            <em>Reiki Evolved</em> is forthcoming. Add your name to the announcement
+            list and we&apos;ll send one note the day copies are available — no
+            other email, ever.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="btn-gold">Request a Copy</Link>
-            <Link href="/training" className="btn-outline">Train With Us</Link>
+            <Link href="/contact" className="btn-gold">Notify Me When Released</Link>
+            <Link href="/training" className="btn-outline">Train With Us Now</Link>
           </div>
         </div>
       </section>
