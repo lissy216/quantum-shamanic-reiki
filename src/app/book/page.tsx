@@ -199,13 +199,13 @@ const CHAPTERS = [
     tag: "Part IV",
     title: "The Five Principles",
     body:
-      "&ldquo;Just for today&rdquo; — the portal to the practice. Anger, worry, gratitude, devotion, kindness as living disciplines.",
+      "“Just for today” — the portal to the practice. Anger, worry, gratitude, devotion, kindness as living disciplines.",
   },
   {
     tag: "Part V",
     title: "The History of Reiki",
     body:
-      "Anchored in the Usui Memorial Stone. Mikao Usui&rsquo;s life and work. Hayashi&rsquo;s clinic. Takata in the West. The quieter streams that came to us.",
+      "Anchored in the Usui Memorial Stone. Mikao Usui’s life and work. Hayashi’s clinic. Takata in the West. The quieter streams that came to us.",
   },
   {
     tag: "Part VI",
