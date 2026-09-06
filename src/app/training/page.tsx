@@ -147,7 +147,7 @@ export default function TrainingPage() {
             Take the next step
           </h2>
           <p className="font-serif text-lg text-[var(--color-ivory-warm)] mt-6">
-            Send a note. Tell us where you are. We&apos;ll share the next available cohort,
+            Send a note. Tell us where you are. We’ll share the next available cohort,
             tuition, and any questions before you commit.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">

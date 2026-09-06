@@ -35,7 +35,7 @@ export default function ContactPage() {
           </div>
           <p className="font-serif text-lg text-[var(--color-ivory-warm)] mt-8 leading-relaxed">
             Sessions, training, the book, or simply a question — write in your own
-            words and we&apos;ll meet you there.
+            words and we’ll meet you there.
           </p>
         </div>
       </section>

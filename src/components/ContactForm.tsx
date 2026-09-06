@@ -51,7 +51,7 @@ export default function ContactForm() {
           Your note has arrived.
         </p>
         <p className="font-serif italic text-[var(--color-ivory-warm)] mt-3">
-          We&apos;ll be in touch soon. With care.
+          We’ll be in touch soon. With care.
         </p>
       </div>
     );
