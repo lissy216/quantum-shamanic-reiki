@@ -100,7 +100,7 @@ export function SessionsServiceJsonLd() {
         areaServed: ["Worldwide", "Canada", "Ontario", "Ottawa Valley"],
         url: `${SITE}/sessions`,
         description:
-          "A Reiki healing session — a gentle, non-invasive energy treatment that supports the body's own capacity to heal. Offered online and as distance sessions worldwide, with in-person sessions also available in the Ottawa Valley. Open to first-time clients and ongoing practice.",
+          "A Reiki healing session — a gentle, non-invasive energy treatment that supports the body’s own capacity to heal. Offered online and as distance sessions worldwide, with in-person sessions also available in the Ottawa Valley. Open to first-time clients and ongoing practice.",
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Reiki session formats",

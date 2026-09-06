@@ -9,7 +9,7 @@ export const metadata = {
   openGraph: {
     title: "Contact — Quantum Shamanic Reiki",
     description:
-      "Send a note. We'll be in touch. Sessions, training, and the Reiki Evolved book.",
+      "Send a note. We’ll be in touch. Sessions, training, and the Reiki Evolved book.",
     url: "https://quantumshamanicreiki.com/contact",
   },
 };

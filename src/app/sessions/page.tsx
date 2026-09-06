@@ -5,7 +5,7 @@ import { SessionsServiceJsonLd, BreadcrumbJsonLd } from "@/components/Structured
 export const metadata = {
   title: "Online & Distance Reiki Sessions (Worldwide) + In-Person",
   description:
-    "Book a Reiki healing session — online and remotely from anywhere in the world, or in person in the Ottawa Valley, Ontario. Quantum Shamanic Reiki distance sessions support stress, anxiety, sleep, grief, and the body's own capacity to heal. No belief required. First-time clients welcome.",
+    "Book a Reiki healing session — online and remotely from anywhere in the world, or in person in the Ottawa Valley, Ontario. Quantum Shamanic Reiki distance sessions support stress, anxiety, sleep, grief, and the body’s own capacity to heal. No belief required. First-time clients welcome.",
   alternates: { canonical: "/sessions" },
   openGraph: {
     title: "Online & Distance Reiki Sessions — Worldwide",
