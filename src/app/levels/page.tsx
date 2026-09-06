@@ -241,7 +241,7 @@ const LEVEL_DETAIL: LevelDetail[] = [
       "Mentoring students through their own awakening",
       "The ethics of payment, scope, and refusal",
       "Holding ceremony — opening, threshold, closing",
-      "The keeper&rsquo;s relationship to silence and rest",
+      "The keeper’s relationship to silence and rest",
       "Becoming a place where the medicine lives",
     ],
     attunement:
