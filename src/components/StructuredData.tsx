@@ -146,7 +146,7 @@ export function TrainingCourseJsonLd() {
       data={{
         "@context": "https://schema.org",
         "@type": "Course",
-        name: "Quantum Shamanic Reiki Level 1 — Foundation Training",
+        name: "Quantum Shamanic Reiki Level 1 Training",
         description:
           "Reiki Level 1 training and certification. Includes the Level 1 Medicine Attunement, Shamanic Fire Rite, the Tree of Life practice, the chakra and Aura systems, full self-healing and treatment-of-others protocols, the Five Reiki Principles, and ethics. Open to complete beginners and to practitioners trained in other Reiki lineages or related modalities.",
         provider: { "@id": `${SITE}/#organization` },
