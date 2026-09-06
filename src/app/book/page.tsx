@@ -45,7 +45,7 @@ export default function BookPage() {
                 students, and anyone called to deepen.
               </p>
               <p className="font-serif text-base text-[var(--color-gold-light)] italic mt-5">
-                Release date to be announced. Add your name to the list and we&apos;ll
+                Release date to be announced. Add your name to the list and we’ll
                 send a single note when copies are available.
               </p>
               <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
@@ -163,7 +163,7 @@ export default function BookPage() {
           </h2>
           <p className="font-serif text-lg text-[var(--color-ivory-warm)] mt-8">
             <em>Reiki Evolved</em> is forthcoming. Add your name to the announcement
-            list and we&apos;ll send one note the day copies are available — no
+            list and we’ll send one note the day copies are available — no
             other email, ever.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">

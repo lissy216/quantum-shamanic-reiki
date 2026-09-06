@@ -50,8 +50,8 @@ export default function AboutPage() {
           <p className="font-serif text-lg mt-5 leading-relaxed">
             It is a gentle, non-invasive healing art practised through the laying
             on of hands or hands-off energy work. The practitioner supports the flow
-            of healing energy through the client&apos;s system, restoring balance,
-            transforming held patterns, and supporting the body&apos;s innate capacity
+            of healing energy through the client’s system, restoring balance,
+            transforming held patterns, and supporting the body’s innate capacity
             to heal itself.
           </p>
           <p className="font-serif text-lg mt-5 leading-relaxed">

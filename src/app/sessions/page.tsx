@@ -142,7 +142,7 @@ export default function SessionsPage() {
             Ready to book?
           </h2>
           <p className="font-serif text-lg text-[var(--color-ivory-warm)] mt-6">
-            Send a brief note and we&apos;ll find a time that works.
+            Send a brief note and we’ll find a time that works.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-gold">Request a Session</Link>
