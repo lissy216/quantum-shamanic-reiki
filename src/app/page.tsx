@@ -100,14 +100,20 @@ export default function Home() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {LEVELS.map((lvl) => (
               <div
-                key={lvl.title}
+                key={lvl.tag}
                 className="border border-[rgba(200,162,74,0.25)] bg-[rgba(28,24,32,0.6)] p-7 flex flex-col"
               >
-                <p className="font-display text-xs tracking-[0.28em] uppercase text-[var(--color-gold)]">
-                  {lvl.tag}
-                </p>
-                <h3 className="font-display text-2xl text-[var(--color-ivory)] mt-3">
-                  {lvl.title}
+                {lvl.title ? (
+                  <p className="font-display text-xs tracking-[0.28em] uppercase text-[var(--color-gold)]">
+                    {lvl.tag}
+                  </p>
+                ) : null}
+                <h3
+                  className={`font-display text-2xl text-[var(--color-ivory)] ${
+                    lvl.title ? "mt-3" : ""
+                  }`}
+                >
+                  {lvl.title ?? lvl.tag}
                 </h3>
                 <p className="font-serif italic text-[var(--color-gold-light)] mt-2">
                   {lvl.subtitle}
@@ -214,10 +220,18 @@ export default function Home() {
   );
 }
 
-const LEVELS = [
+type LevelCard = {
+  tag: string;
+  /** Optional. Levels I and II carry no title, only a tag and a strapline. */
+  title?: string;
+  subtitle: string;
+  summary: string;
+  status: string;
+};
+
+const LEVELS: LevelCard[] = [
   {
     tag: "Level I",
-    title: "Foundation",
     subtitle: "Becoming Reiki",
     summary:
       "The first attunement. Self-healing, hand positions, the chakra system, the Aura, ethics, and the Tree of Life practice. The ground beneath everything that follows.",
@@ -225,7 +239,6 @@ const LEVELS = [
   },
   {
     tag: "Level II",
-    title: "Practitioner",
     subtitle: "Symbol & Distance",
     summary:
       "The sacred symbols and their living application — Cho-Ku-Rei, Sei-Hei-Ki, Hon-Sha-Ze-Sho-Nen. Distance healing through the entanglement of all things.",
@@ -233,7 +246,7 @@ const LEVELS = [
   },
   {
     tag: "Level III",
-    title: "Master",
+    title: "Advanced Practitioner",
     subtitle: "The Master Symbol",
     summary:
       "The Dai-Ko-Myo, the Master frequency. Deepened practice, advanced treatment forms, and the inner work of holding space for others on the path.",
@@ -241,7 +254,7 @@ const LEVELS = [
   },
   {
     tag: "Level IV",
-    title: "Teacher",
+    title: "Reiki Master Teacher",
     subtitle: "Lineage Carrier",
     summary:
       "The capacity to attune others. Lineage transmission, ceremony, and the ethics of passing this medicine forward. The work of becoming a keeper.",

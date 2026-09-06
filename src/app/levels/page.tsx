@@ -4,12 +4,12 @@ import BrandSigil from "@/components/BrandSigil";
 export const metadata = {
   title: "The Four Levels of Reiki Certification",
   description:
-    "The QSR Reiki certification path has four levels: Foundation (Level 1), Practitioner (Level 2), Master (Level 3), and Teacher (Level 4). Curriculum, attunements, prerequisites, and what each level opens for both beginners and practitioners trained in other Reiki traditions.",
+    "The QSR Reiki certification path has four levels: Level 1, Level 2, Level 3 (Advanced Practitioner), and Level 4 (Reiki Master Teacher). Curriculum, attunements, prerequisites, and what each level opens for both beginners and practitioners trained in other Reiki traditions.",
   alternates: { canonical: "/levels" },
   openGraph: {
     title: "The Four Levels of Reiki Certification",
     description:
-      "Foundation, Practitioner, Master, Teacher. Full curriculum and attunement details for each level of Quantum Shamanic Reiki.",
+      "Level 1, Level 2, Advanced Practitioner, Reiki Master Teacher. Full curriculum and attunement details for each level of Quantum Shamanic Reiki.",
     url: "https://quantumshamanicreiki.com/levels",
   },
 };
@@ -51,19 +51,21 @@ export default function LevelsPage() {
             <div className="wrap section">
               <div className="grid gap-12 lg:grid-cols-[1fr_2fr] items-start">
                 <div>
-                  <p
-                    className={`font-display text-xs tracking-[0.32em] uppercase ${
-                      dark ? "text-[var(--color-gold)]" : "text-[var(--color-crimson)]"
-                    }`}
-                  >
-                    {lvl.tag}
-                  </p>
+                  {lvl.title ? (
+                    <p
+                      className={`font-display text-xs tracking-[0.32em] uppercase ${
+                        dark ? "text-[var(--color-gold)]" : "text-[var(--color-crimson)]"
+                      }`}
+                    >
+                      {lvl.tag}
+                    </p>
+                  ) : null}
                   <h2
-                    className={`font-display text-3xl md:text-5xl mt-4 ${
-                      dark ? "text-[var(--color-ivory)]" : "text-[var(--color-charcoal)]"
-                    }`}
+                    className={`font-display text-3xl md:text-5xl ${
+                      lvl.title ? "mt-4" : ""
+                    } ${dark ? "text-[var(--color-ivory)]" : "text-[var(--color-charcoal)]"}`}
                   >
-                    {lvl.title}
+                    {lvl.title ?? lvl.tag}
                   </h2>
                   <p
                     className={`font-serif italic text-lg mt-3 ${
@@ -141,7 +143,7 @@ export default function LevelsPage() {
             The first step is Level I.
           </h2>
           <p className="font-serif text-lg text-[var(--color-ivory-warm)] mt-6 leading-relaxed">
-            Foundation training is open for enrollment. Whether you are new to Reiki,
+            Level I training is open for enrollment. Whether you are new to Reiki,
             already trained in another tradition, or simply called to deepen — all are welcome.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
@@ -154,10 +156,20 @@ export default function LevelsPage() {
   );
 }
 
-const LEVEL_DETAIL = [
+type LevelDetail = {
+  tag: string;
+  /** Optional. Levels I and II carry no title, only a tag and a strapline. */
+  title?: string;
+  subtitle: string;
+  status: string;
+  intro: string;
+  curriculum: string[];
+  attunement: string;
+};
+
+const LEVEL_DETAIL: LevelDetail[] = [
   {
     tag: "Level I",
-    title: "Foundation",
     subtitle: "Becoming Reiki",
     status: "Open for enrollment",
     intro:
@@ -178,7 +190,6 @@ const LEVEL_DETAIL = [
   },
   {
     tag: "Level II",
-    title: "Practitioner",
     subtitle: "Symbol & Distance",
     status: "Cohort forming — request details",
     intro:
@@ -198,7 +209,7 @@ const LEVEL_DETAIL = [
   },
   {
     tag: "Level III",
-    title: "Master",
+    title: "Advanced Practitioner",
     subtitle: "The Master Symbol",
     status: "Prerequisite: Level II",
     intro:
@@ -218,7 +229,7 @@ const LEVEL_DETAIL = [
   },
   {
     tag: "Level IV",
-    title: "Teacher",
+    title: "Reiki Master Teacher",
     subtitle: "Lineage Carrier",
     status: "By invitation",
     intro:
