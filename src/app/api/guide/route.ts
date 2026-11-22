@@ -86,7 +86,12 @@ export async function POST(req: Request) {
     model: MODEL,
     instructions: guideInstructions(),
     messages: await convertToModelMessages(messages.slice(-MAX_HISTORY)),
-    maxOutputTokens: 600,
+    // The model thinks before it answers, and that thinking counts against this
+    // limit. Low reasoning suits a short chat; the limit is a safety net, and the
+    // replies stay short by instruction. At 600 with default reasoning, heavy
+    // questions could be cut off mid-sentence.
+    reasoning: 'low',
+    maxOutputTokens: 2000,
   })
 
   return createUIMessageStreamResponse({
